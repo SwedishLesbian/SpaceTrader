@@ -714,7 +714,7 @@ public class MainActivity extends AppCompatActivity implements MenuDropDownWindo
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		if (mActionMode != null) {
-			switch (event).getActionMasked() {
+			switch (event.getActionMasked()) {
 				case MotionEvent.ACTION_DOWN:
 				case MotionEvent.ACTION_POINTER_DOWN:
 					finishMenuActionMode();
