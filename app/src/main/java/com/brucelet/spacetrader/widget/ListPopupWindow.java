@@ -1532,7 +1532,7 @@ public class ListPopupWindow {
 	 * displayed on screen within a drop down. The focus is never actually
 	 * passed to the drop down in this mode; the list only looks focused.</p>
 	 */
-	private class DropDownListView extends ListViewCompat {
+	private static class DropDownListView extends ListViewCompat {
 
 		/*
 		* WARNING: This is a workaround for a touch mode issue.
