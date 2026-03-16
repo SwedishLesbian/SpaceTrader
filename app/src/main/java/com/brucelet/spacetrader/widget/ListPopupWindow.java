@@ -31,7 +31,6 @@ import androidx.core.widget.ListViewAutoScrollHelper;
 import androidx.core.widget.PopupWindowCompat;
 import androidx.appcompat.R;
 import android.widget.PopupWindow;
-import androidx.appcompat.widget.ListViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -1715,7 +1714,7 @@ public class ListPopupWindow {
 			positionSelectorLikeTouchCompat(position, child, x, y);
 
 			// This needs some explanation. We need to disable the selector for this next call
-			// due to the way that ListViewCompat works. Otherwise both ListView and ListViewCompat
+			// due to ListView behavior. Otherwise both ListView and
 			// will draw the selector and bad things happen.
 			setSelectorEnabled(false);
 
