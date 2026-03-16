@@ -33,7 +33,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.core.content.res.ResourcesCompat;
