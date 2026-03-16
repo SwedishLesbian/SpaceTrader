@@ -30,7 +30,7 @@ import androidx.core.view.ViewPropertyAnimatorCompat;
 import androidx.core.widget.ListViewAutoScrollHelper;
 import androidx.core.widget.PopupWindowCompat;
 import androidx.appcompat.R;
-import androidx.appcompat.widget.AppCompatPopupWindow;
+import android.widget.PopupWindow;
 import androidx.appcompat.widget.ListViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
