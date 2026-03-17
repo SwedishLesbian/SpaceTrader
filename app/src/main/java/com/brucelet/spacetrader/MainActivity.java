@@ -33,7 +33,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.core.content.res.ResourcesCompat;
@@ -525,31 +525,43 @@ public class MainActivity extends AppCompatActivity implements MenuDropDownWindo
 
 		Log.d("","Selecting menu item with id "+getResources().getResourceEntryName(id));
 
-		switch (id) {
-		case R.id.menu_keyboard:
+		// AndroidX fix: converted from switch/case to if-else
+
+
+		if (id == R.id.menu_keyboard) {
 			// NB developer mode only for debugging.
 			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
 
 			return true;
 
-		case R.id.menu_crash:
+
+
+		} else if (id == R.id.menu_crash) {
 			// NB developer mode only for debugging.
 			throw new Error("Intentional crash for stack trace debugging");
 
-		case R.id.menu_options:
+
+
+		} else if (id == R.id.menu_options) {
 
 			showDialogFragment(OptionsDialog.newInstance());
 			return true;
-		case R.id.menu_shortcuts:
+
+
+		} else if (id == R.id.menu_shortcuts) {
 
 			showDialogFragment(ShortcutDialog.newInstance());
 
 			return true;
-		case R.id.menu_scores:
+
+
+		} else if (id == R.id.menu_scores) {
 			getGameState().viewHighScores();
 			return true;
-		case R.id.menu_clearscores:
+
+
+		} else if (id == R.id.menu_clearscores) {
 			showDialogFragment(ConfirmDialog.newInstance(
 					R.string.dialog_clearscores_title,
 					R.string.dialog_clearscores_message,
@@ -561,7 +573,9 @@ public class MainActivity extends AppCompatActivity implements MenuDropDownWindo
 						}
 					}, null));
 			return true;
-		case R.id.menu_new:
+
+
+		} else if (id == R.id.menu_new) {
 			if (getCurrentScreenType() == ScreenType.TITLE) {
 				showDialogFragment(NewGameDialog.newInstance());
 			} else {
@@ -578,7 +592,9 @@ public class MainActivity extends AppCompatActivity implements MenuDropDownWindo
 						}, null));
 			}
 			return true;
-		case R.id.menu_switch:
+
+
+		} else if (id == R.id.menu_switch) {
 			showDialogFragment(ConfirmDialog.newInstance(
 					R.string.dialog_switchgame_title,
 					R.string.dialog_switchgame_message,
@@ -637,7 +653,9 @@ public class MainActivity extends AppCompatActivity implements MenuDropDownWindo
 					},
 					null));
 			return true;
-		case R.id.menu_retire:
+
+
+		} else if (id == R.id.menu_retire) {
 			showDialogFragment(ConfirmDialog.newInstance(
 					R.string.dialog_retire_title,
 					R.string.dialog_retire_message,
@@ -651,62 +669,93 @@ public class MainActivity extends AppCompatActivity implements MenuDropDownWindo
 			return true;
 
 
-		case R.id.menu_savegame:
+
+
+		} else if (id == R.id.menu_savegame) {
 			saveSnapshot();
 			return true;
 
 
-		case R.id.menu_help_about:
+
+
+		} else if (id == R.id.menu_help_about) {
 			showDialogFragment(AboutDialog.newInstance());
 			return true;
 
-		case R.id.menu_help_acknowledgements:
+
+
+		} else if (id == R.id.menu_help_acknowledgements) {
 			showDialogFragment(HelpDialog.newInstance(R.string.help_acknowledgements));
 			return true;
 
-		case R.id.menu_help_current:
+
+
+		} else if (id == R.id.menu_help_current) {
 			showDialogFragment(HelpDialog.newInstance(getCurrentScreen().getHelpTextResId()));
 			return true;
 
-		case R.id.menu_help_firststeps:
+
+
+		} else if (id == R.id.menu_help_firststeps) {
 			showDialogFragment(HelpDialog.newInstance(R.string.help_firststeps));
 			return true;
 
-		case R.id.menu_help_howtoplay:
+
+
+		} else if (id == R.id.menu_help_howtoplay) {
 			showDialogFragment(HelpDialog.newInstance(R.string.help_howtoplay));
 			return true;
 
-		case R.id.menu_help_helponmenu:
+
+
+		} else if (id == R.id.menu_help_helponmenu) {
 			showDialogFragment(HelpDialog.newInstance(R.string.help_helponmenu));
 			return true;
 
-		case R.id.menu_help_skills:
+
+
+		} else if (id == R.id.menu_help_skills) {
 			showDialogFragment(HelpDialog.newInstance(R.string.help_skills));
 			return true;
 
-		case R.id.menu_help_shipequipment:
+
+
+		} else if (id == R.id.menu_help_shipequipment) {
 			showDialogFragment(HelpDialog.newInstance(R.string.help_shipequipment));
 			return true;
 
-		case R.id.menu_help_trading:
+
+
+		} else if (id == R.id.menu_help_trading) {
 			showDialogFragment(HelpDialog.newInstance(R.string.help_trading));
 			return true;
 
-		case R.id.menu_help_traveling:
+
+
+		} else if (id == R.id.menu_help_traveling) {
 			showDialogFragment(HelpDialog.newInstance(R.string.help_travelling));
 			return true;
 
-		case R.id.menu_help_documentation:
+
+
+		} else if (id == R.id.menu_help_documentation) {
 			// Show the documentation html file from the original game, in a webview
 			Intent intent = new Intent(this, DocumentationActivity.class);
 			intent.putExtra("theme", getThemeType());
 			startActivity(intent);
 			return true;
 
-		case R.id.home:
-		case android.R.id.home:
+
+
+		} else if (id == R.id.home) {
+
+
+		} else if (id == android.R.id.home) {
 			startMenuActionMode();
 			return true;
+		
+
+
 		}
 		return false;
 	}
@@ -714,7 +763,7 @@ public class MainActivity extends AppCompatActivity implements MenuDropDownWindo
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		if (mActionMode != null) {
-			switch (event).getActionMasked() {
+			switch (event.getActionMasked()) {
 				case MotionEvent.ACTION_DOWN:
 				case MotionEvent.ACTION_POINTER_DOWN:
 					finishMenuActionMode();

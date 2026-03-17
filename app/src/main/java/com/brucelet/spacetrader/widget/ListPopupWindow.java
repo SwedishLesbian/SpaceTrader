@@ -30,8 +30,7 @@ import androidx.core.view.ViewPropertyAnimatorCompat;
 import androidx.core.widget.ListViewAutoScrollHelper;
 import androidx.core.widget.PopupWindowCompat;
 import androidx.appcompat.R;
-import androidx.appcompat.widget.AppCompatPopupWindow;
-import androidx.appcompat.widget.ListViewCompat;
+import android.widget.PopupWindow;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -1532,7 +1531,7 @@ public class ListPopupWindow {
 	 * displayed on screen within a drop down. The focus is never actually
 	 * passed to the drop down in this mode; the list only looks focused.</p>
 	 */
-	private static class DropDownListView extends ListViewCompat {
+	private class DropDownListView extends android.widget.ListView {
 
 		/*
 		* WARNING: This is a workaround for a touch mode issue.
@@ -1715,7 +1714,7 @@ public class ListPopupWindow {
 			positionSelectorLikeTouchCompat(position, child, x, y);
 
 			// This needs some explanation. We need to disable the selector for this next call
-			// due to the way that ListViewCompat works. Otherwise both ListView and ListViewCompat
+			// due to ListView behavior. Otherwise both ListView and
 			// will draw the selector and bad things happen.
 			setSelectorEnabled(false);
 

@@ -1067,20 +1067,15 @@ public class GameState {
 		identifyStartup = ((CheckBox) dialog.getDialog().findViewById(R.id.dialog_options_identify)).isChecked();
 		
 		int encounterStyle = ((RadioGroup) dialog.getDialog().findViewById(R.id.dialog_options_encounterstyle)).getCheckedRadioButtonId();
-		switch (encounterStyle) {
-		case R.id.dialog_options_encounterstyle_both:
+		if (encounterStyle == R.id.dialog_options_encounterstyle_both) {
 			textualEncounters = true;
 			graphicalEncounters = true;
-			break;
-		case R.id.dialog_options_encounterstyle_textual:
+		} else if (encounterStyle == R.id.dialog_options_encounterstyle_textual) {
 			textualEncounters = true;
 			graphicalEncounters = false;
-			break;
-		case R.id.dialog_options_encounterstyle_graphical:
-		default:
+		} else {
 			textualEncounters = false;
 			graphicalEncounters = true;
-			break;
 		}
 
 		volumeScroll = ((CheckBox) dialog.getDialog().findViewById(R.id.dialog_options_volumescroll)).isChecked();
@@ -1098,23 +1093,17 @@ public class GameState {
 
 		RadioGroup rg = (RadioGroup) dialog.getDialog().findViewById(R.id.dialog_options_theme);
 		ThemeType newTheme;
-		switch (rg.getCheckedRadioButtonId()) {
-		case R.id.dialog_options_theme_palm:
+		int themeId = rg.getCheckedRadioButtonId();
+		if (themeId == R.id.dialog_options_theme_palm) {
 			newTheme = ThemeType.HOLO_PALM;
-			break;
-		case R.id.dialog_options_theme_dark:
+		} else if (themeId == R.id.dialog_options_theme_dark) {
 			newTheme = ThemeType.HOLO_DARK;
-			break;
-		case R.id.dialog_options_theme_light:
-		default:
-			newTheme = ThemeType.HOLO_LIGHT;
-			break;
-		case R.id.dialog_options_theme_material_light:
+		} else if (themeId == R.id.dialog_options_theme_material_light) {
 			newTheme = ThemeType.MATERIAL_LIGHT;
-			break;
-		case R.id.dialog_options_theme_material_dark:
+		} else if (themeId == R.id.dialog_options_theme_material_dark) {
 			newTheme = ThemeType.MATERIAL_DARK;
-			break;
+		} else {
+			newTheme = ThemeType.HOLO_LIGHT;
 		}
 		
 		if (theme != newTheme) {
